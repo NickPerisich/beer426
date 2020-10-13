@@ -1,9 +1,12 @@
 import React from 'react';
+import Navigation from './Navigation';
+import Landing from './Landing'
 
 function App() {
   return (
-    <div className="App">
-      <h1>BEER!!!</h1>
+    <div>
+      <Navigation />
+      <Landing />
     </div>
   );
 }
