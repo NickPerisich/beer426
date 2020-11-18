@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.card-deck {
+  margin-right: 0px;
+  margin-left: 0px;
+}

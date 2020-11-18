@@ -7,4 +7,14 @@ router.get('/', function(req, res, next) {
   res.send("hello world");
 });
 
+router.post('/login', function(req, res, next) {
+  const users = req.db.get('users');
+  users.insert(req.body);
+});
+
+router.post('/register', function(req, res, next) {
+
+  console.log(req.db);
+});
+
 module.exports = router;
