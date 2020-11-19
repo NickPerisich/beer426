@@ -37,7 +37,7 @@ function Landing(props) {
         setLoginMessage("Incorrect username or password");
       } else {
         props.logInUser(login.username);
-        history.push("/about");
+        history.push("/profile");
       }
     });
   }
@@ -57,7 +57,7 @@ function Landing(props) {
       }
       else {
         props.logInUser(register.username);
-        history.push("/about");
+        history.push("/profile");
       }
     });
   }

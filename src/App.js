@@ -26,14 +26,20 @@ function App() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
+            { username.length > 0 ? 
+            <>
+              <Nav.Link>
+                <Link to="/profile">Profile</Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to="/" onClick={() => setUsername('')}>Logout</Link>
+              </Nav.Link>
+            </> :
+            <Nav.Link>
+              <Link to="/">Login</Link>
+            </Nav.Link> }
             <Nav.Link>
               <Link to="/about">About</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/home">Login</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/link">Register</Link>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
@@ -43,8 +49,11 @@ function App() {
           <LandingJumbotron />
           <Landing logInUser={logInUser} />
         </Route>
-        <Route path="/about">
+        <Route path="/profile">
           <ProfilePage username={username}/>
+        </Route>
+        <Route path="/about">
+          <h1>This is the about page</h1>
         </Route>
       </Switch>
     </Router>
