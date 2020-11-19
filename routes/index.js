@@ -8,13 +8,31 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-  const users = req.db.get('users');
-  users.insert(req.body);
+  const db = req.db.get('users');
+  db.findOne({username: req.body.username}).then(user => {
+    if (!user) {
+      res.send('INCORRECT');
+    }
+    else if (user.username === req.body.username && user.password === req.body.password) {
+      res.send(user);
+    }
+    else {
+      res.send('INCORRECT');
+    }
+  });
 });
 
 router.post('/register', function(req, res, next) {
-
-  console.log(req.db);
+  const db = req.db.get('users');
+  db.findOne({username: req.body.username}).then(user => {
+    if (user) {
+      res.send("TAKEN");
+    }
+    else {
+      db.insert(req.body);
+      res.send("SUCCESS");
+    }
+  });
 });
 
 module.exports = router;

@@ -4,15 +4,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from 'react-bootstrap/Container'
 
 function LandingJumbotron() {
-  // const [state, setState] = useState("default");
-
-  // useEffect (() => {
-  //   fetch("/wow")
-  //   .then(res => res.text())
-  //   .then(res => setState(res));
-  // })
-
-
+  
   return (
     <Jumbotron fluid>
         <Container>

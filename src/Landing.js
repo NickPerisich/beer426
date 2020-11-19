@@ -3,8 +3,11 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
+import { useHistory } from "react-router-dom";
 
-function Landing() {
+function Landing(props) {
+  let history = useHistory();
+
   const [register, setRegister] = useState({
     username: "",
     password: "",
@@ -17,6 +20,9 @@ function Landing() {
     password: ""
   });
 
+  const [loginMessage, setLoginMessage] = useState('')
+  const [registerMessage, setRegisterMessage] = useState('')
+
   function handleLoginSubmit(event){
     event.preventDefault();
     fetch('/api/login', {
@@ -26,7 +32,14 @@ function Landing() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(login)
-    })
+    }).then(res => res.text()).then(res => {
+      if (res === 'INCORRECT'){
+        setLoginMessage("Incorrect username or password");
+      } else {
+        props.logInUser(login.username);
+        history.push("/about");
+      }
+    });
   }
 
   function handleRegisterSubmit(event){
@@ -38,7 +51,15 @@ function Landing() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(register)
-    })
+    }).then(res => res.text()).then(res => {
+      if (res === 'TAKEN'){
+        setRegisterMessage("Username is already taken");
+      }
+      else {
+        props.logInUser(register.username);
+        history.push("/about");
+      }
+    });
   }
 
   function validateLoginForm() {
@@ -51,6 +72,11 @@ function Landing() {
     register.firstName.length > 0 &&
     register.lastName.length > 0;
   }
+
+  useEffect(() => {
+    setLoginMessage('');
+    setRegisterMessage('');
+  }, [login, register])
   
   return (
     <CardDeck style={{ marginRight: '0px', marginLeft: '0px', marginTop: '15px' }}>
@@ -67,7 +93,7 @@ function Landing() {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Enter Password" value={login.password} onChange={(e) => setLogin({...login, password: e.target.value})}/>
             </Form.Group>
-
+            {loginMessage && <p class="text-danger">{ loginMessage }</p>}
             <Button variant="primary" type="submit" disabled={!validateLoginForm()}>
               Submit
             </Button>
@@ -98,7 +124,7 @@ function Landing() {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Enter Password" value={register.password} onChange={(e) => setRegister({...register, password: e.target.value})} />
             </Form.Group>
-
+            {registerMessage && <p class="text-danger">{ registerMessage }</p>}
             <Button variant="primary" type="submit" disabled={!validateRegisterForm()}>
               Submit
             </Button>
