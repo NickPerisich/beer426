@@ -21,26 +21,19 @@ function App() {
 
   return (
     <Router>
-      <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">BeerFinder</Navbar.Brand>
+      <Navbar expand="md" className="shadow bg-blue">
+      <Navbar.Brand href="#home" className="text-light">BrewFinder</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
             { username.length > 0 ? 
             <>
-              <Nav.Link>
-                <Link to="/profile">Profile</Link>
-              </Nav.Link>
-              <Nav.Link>
-                <Link to="/" onClick={() => setUsername('')}>Logout</Link>
-              </Nav.Link>
+                <Link className="nav-link middle text-light" to="/profile">Profile</Link>
+                <Link className="nav-link middle text-light" to="/" onClick={() => setUsername('')}>Logout</Link>
             </> :
-            <Nav.Link>
-              <Link to="/">Login</Link>
-            </Nav.Link> }
-            <Nav.Link>
-              <Link to="/about">About</Link>
-            </Nav.Link>
+              <Link className="nav-link middle text-light" to="/">Login</Link>
+             }
+              <Link className="nav-link middle text-light" to="/about">About</Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

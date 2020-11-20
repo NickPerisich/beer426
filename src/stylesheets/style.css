@@ -6,3 +6,110 @@
   padding-left: 0px;
 }
 
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.login {
+  padding: 30px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.hero {
+  padding: 1em;
+}
+
+.hero-content {
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  margin: 60px;
+}
+
+.white {
+  color: white;
+}
+
+.yellow {
+  color: #FFC300;
+}
+
+.blue {
+  color: #2C488C;
+}
+
+.bg-blue {
+  background-color: #2C488C;
+}
+
+.head {
+  background: linear-gradient(to right,#be3f18, #ffa602);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fade-btn {
+  background: linear-gradient(to right,#be3f18, #ffa602);
+}
+
+.search {
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  border: 1px solid #f7f7f7;
+  margin-top: 30px;
+  background: linear-gradient(to right,#be3f18, #ffa602);
+  background-repeat: none;
+  transition: 0.25s;
+}
+
+.search:hover {
+  opacity: 0.8;
+}
+
+.card-deck {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.nav-link {
+  transition: 0.25s;
+  margin-right: 30px;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+}
+
+a.middle {
+    position: relative;
+}
+
+a.middle:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to right,#be3f18, #ffa602);
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+a.middle:hover:before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+.search-desc {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.padding {
+  padding: 30px;
+}

@@ -81,7 +81,7 @@ function Landing(props) {
   }, [login, register])
   
   return (
-    <Container fluid>
+    <Container fluid className="login bg-blue">
       <CardColumns>
         <Card>
           <Card.Body>
