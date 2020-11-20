@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
+import CardColumns from 'react-bootstrap/CardDeck'
+import Container from 'react-bootstrap/Container'
 import { useHistory } from "react-router-dom";
 
 function Landing(props) {
@@ -12,7 +13,8 @@ function Landing(props) {
     username: "",
     password: "",
     firstName: "",
-    lastName: ""
+    lastName: "",
+    likedBeers: {}
   });
 
   const [login, setLogin] = useState({
@@ -79,59 +81,61 @@ function Landing(props) {
   }, [login, register])
   
   return (
-    <CardDeck style={{ marginRight: '0px', marginLeft: '0px', marginTop: '15px' }}>
-      <Card>
-        <Card.Body>
-          <Card.Title>Login</Card.Title>
-          <Form onSubmit={handleLoginSubmit}>
-            <Form.Group controlId="formLoginUsername">
-              <Form.Label>Username</Form.Label>
-              <Form.Control type="text" placeholder="Enter Username" value={login.username} onChange={(e) => setLogin({...login, username: e.target.value})}/>
-            </Form.Group>
+    <Container fluid>
+      <CardColumns>
+        <Card>
+          <Card.Body>
+            <Card.Title>Login</Card.Title>
+            <Form onSubmit={handleLoginSubmit}>
+              <Form.Group controlId="formLoginUsername">
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" placeholder="Enter Username" value={login.username} onChange={(e) => setLogin({...login, username: e.target.value})}/>
+              </Form.Group>
 
-            <Form.Group controlId="formLoginPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Enter Password" value={login.password} onChange={(e) => setLogin({...login, password: e.target.value})}/>
-            </Form.Group>
-            {loginMessage && <p class="text-danger">{ loginMessage }</p>}
-            <Button variant="primary" type="submit" disabled={!validateLoginForm()}>
-              Submit
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
+              <Form.Group controlId="formLoginPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Enter Password" value={login.password} onChange={(e) => setLogin({...login, password: e.target.value})}/>
+              </Form.Group>
+              {loginMessage && <p class="text-danger">{ loginMessage }</p>}
+              <Button variant="primary" type="submit" disabled={!validateLoginForm()}>
+                Submit
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
 
-      <Card>
-        <Card.Body>
-          <Card.Title>Register</Card.Title>
-          <Form onSubmit={handleRegisterSubmit}>
-            <Form.Group controlId="formRegisterFirstname">
-              <Form.Label>First Name</Form.Label>
-              <Form.Control type="text" placeholder="Enter First Name" value={register.firstName} onChange={(e) => setRegister({...register, firstName: e.target.value})}/>
-            </Form.Group>
+        <Card>
+          <Card.Body>
+            <Card.Title>Register</Card.Title>
+            <Form onSubmit={handleRegisterSubmit}>
+              <Form.Group controlId="formRegisterFirstname">
+                <Form.Label>First Name</Form.Label>
+                <Form.Control type="text" placeholder="Enter First Name" value={register.firstName} onChange={(e) => setRegister({...register, firstName: e.target.value})}/>
+              </Form.Group>
 
-            <Form.Group controlId="formRegisterLastname">
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control type="text" placeholder="Enter Last Name"  value={register.LastName} onChange={(e) => setRegister({...register, lastName: e.target.value})}/>
-            </Form.Group>
+              <Form.Group controlId="formRegisterLastname">
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control type="text" placeholder="Enter Last Name"  value={register.LastName} onChange={(e) => setRegister({...register, lastName: e.target.value})}/>
+              </Form.Group>
 
-            <Form.Group controlId="formRegisterUsername">
-              <Form.Label>Username</Form.Label>
-              <Form.Control type="text" placeholder="Enter Username"  value={register.username} onChange={(e) => setRegister({...register, username: e.target.value})}/>
-            </Form.Group>
+              <Form.Group controlId="formRegisterUsername">
+                <Form.Label>Username</Form.Label>
+                <Form.Control type="text" placeholder="Enter Username"  value={register.username} onChange={(e) => setRegister({...register, username: e.target.value})}/>
+              </Form.Group>
 
-            <Form.Group controlId="formRegisterPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Enter Password" value={register.password} onChange={(e) => setRegister({...register, password: e.target.value})} />
-            </Form.Group>
-            {registerMessage && <p class="text-danger">{ registerMessage }</p>}
-            <Button variant="primary" type="submit" disabled={!validateRegisterForm()}>
-              Submit
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-    </CardDeck>
+              <Form.Group controlId="formRegisterPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Enter Password" value={register.password} onChange={(e) => setRegister({...register, password: e.target.value})} />
+              </Form.Group>
+              {registerMessage && <p class="text-danger">{ registerMessage }</p>}
+              <Button variant="primary" type="submit" disabled={!validateRegisterForm()}>
+                Submit
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
+      </CardColumns>
+    </Container>
   );
 }
 

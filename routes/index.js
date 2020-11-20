@@ -3,8 +3,19 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  // res.render('index', { title: 'Express' });
   res.send("hello world");
+});
+
+router.post('/likes', function(req, res, next) {
+  const db = req.db.get('users');
+  db.update({username: req.body.username}).then(user => {
+    res.send(user.likedBeers);
+  });
+});
+
+router.post('/updatelikes', function(req, res, next) {
+  const db = req.db.get('users');
+  db.update({username: req.body.username}, { '$set': {"likedBeers" : req.body.likedBeers}})
 });
 
 router.post('/login', function(req, res, next) {
