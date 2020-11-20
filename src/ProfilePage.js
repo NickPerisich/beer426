@@ -81,12 +81,15 @@ function ProfilePage(props) {
   }
 
   return (
-    <Container fluid className='mt-3'>
+    <Container fluid className='padding'>
+      <Card bg="light" className="search-desc">
         <Container fluid className='mb-3'>
-          <SelectSearch search fuse={false} options={options} renderValue={valueRenderer} onChange={selectedValueChange} placeholder="Find your beer" />
+          <div class="search-desc"><h5>Search for styles of beer, breweries near you, or whatever else you want to know about beer!</h5></div>
+          <SelectSearch search fuse={false} options={options} renderValue={valueRenderer} onChange={selectedValueChange} placeholder="Find your beer..." />
         </Container>
+      </Card>
         <CardColumns>
-          {selectedBeer && <Card>
+          {selectedBeer && <Card bg="light">
             <Card.Body>
               <Card.Title>{selectedBeer.name}</Card.Title>
               <Card.Subtitle>{selectedBeer.style_name}</Card.Subtitle>
@@ -101,12 +104,12 @@ function ProfilePage(props) {
                   {selectedBeer.descript && <li>{"Description: " + selectedBeer.descript}</li>}
                 </ul>
               </Card.Text>
-              <Button variant="success" onClick={addToLikes} disabled={buttonDisabler()}>Add to likes</Button>
+              <Button variant="success" onClick={addToLikes} disabled={buttonDisabler()}><i class="material-icons">thumb_up</i></Button>
             </Card.Body>
           </Card>}
           {likedBeers.map(beer => {
             return (
-              <Card>
+              <Card bg="light">
                 <Card.Body>
                   <Card.Title>{beer.name}</Card.Title>
                   <Card.Subtitle>{beer.style_name}</Card.Subtitle>
