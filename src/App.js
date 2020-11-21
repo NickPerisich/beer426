@@ -4,6 +4,7 @@ import Nav from 'react-bootstrap/Nav';
 import LandingJumbotron from './LandingJumbotron'
 import Landing from './Landing';
 import ProfilePage from './ProfilePage';
+import About from './About';
 import {
   BrowserRouter as Router,
   Switch,
@@ -33,7 +34,7 @@ function App() {
   return (
     <Router>
       <Navbar expand="md" className="shadow bg-blue">
-      <Navbar.Brand href="#home" className="text-light">BrewFinder</Navbar.Brand>
+      <Navbar.Brand className="text-light">BrewFinder</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
@@ -57,7 +58,7 @@ function App() {
           <ProfilePage username={username}  logout={logout}/>
         </Route>
         <Route path="/about">
-          <h1>This is the about page</h1>
+          <About />
         </Route>
       </Switch>
     </Router>
