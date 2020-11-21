@@ -13,7 +13,7 @@ import {
 
 
 function App() {
-  let [username, setUsername] = useState('nickgfp');
+  let [username, setUsername] = useState('');
 
   const logInUser = (username) => {
     setUsername(username);
