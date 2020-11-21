@@ -39,7 +39,7 @@ function App() {
       </Navbar>
       <Switch>
         <Route exact path="/">
-          <LandingJumbotron />
+          <LandingJumbotron username={username}/>
           <Landing logInUser={logInUser} />
         </Route>
         <Route path="/profile">

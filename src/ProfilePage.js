@@ -11,6 +11,7 @@ function ProfilePage(props) {
   const [dbQuery, setDbQuery] = useState('');
   const [selectedBeer, setSelectedBeer] = useState();
   const [likedBeers, setLikedBeers] = useState([]);
+  let first = useRef(true);
 
   useEffect(() => {
     fetch('https://data.opendatasoft.com/api/records/1.0/search/?dataset=open-beer-database%40public-us&sort=ibu&rows=8&facet=style_name&facet=cat_name&facet=name_breweries&facet=country&q=' + dbQuery)
@@ -22,34 +23,37 @@ function ProfilePage(props) {
     });
   }, [dbQuery])
 
-  // useEffect(() => {
-  //   console.log("first");
-  //   fetch('/api/likes', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       username: props.username
-  //     })
-  //   }).then(items => items.json()).then(items => {
-  //     console.log(items);
-  //   });
-  // }, [])
-
   useEffect(() => {
-    fetch('/api/updatelikes', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: props.username,
-        likedBeers: likedBeers
+    if (first.current){
+      fetch('/api/likes', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: props.username
+        })
       })
-    });
+      .then(res => res.json())
+      .then(res => {
+        first.current = false;
+        setLikedBeers(res);
+      });
+    }
+    else {
+      fetch('/api/updatelikes', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: props.username,
+          likedBeers: likedBeers
+        })
+      });
+    }
   }, [likedBeers])
 
 	const debouncedSave = useCallback(debounce(nextValue => setDbQuery(nextValue), 500), []);
@@ -105,6 +109,7 @@ function ProfilePage(props) {
                 </ul>
               </Card.Text>
               <Button variant="success" onClick={addToLikes} disabled={buttonDisabler()}>Like</Button>
+
             </Card.Body>
           </Card>}
           {likedBeers.map(beer => {

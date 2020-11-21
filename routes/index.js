@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/likes', function(req, res, next) {
   const db = req.db.get('users');
-  db.update({username: req.body.username}).then(user => {
+  db.findOne({username: req.body.username}).then(user => {
     res.send(user.likedBeers);
   });
 });
