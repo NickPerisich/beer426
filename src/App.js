@@ -14,9 +14,20 @@ import {
 
 function App() {
   let [username, setUsername] = useState('');
+  let [firstname, setFirstname] = useState('');
 
-  const logInUser = (username) => {
-    setUsername(username);
+  const logInUser = (user) => {
+    setUsername(user.username);
+    setFirstname(user.firstName);
+  }
+
+  const logout = () => {
+    setDefaults();
+  }
+
+  function setDefaults() {
+    setUsername('');
+    setFirstname('');
   }
 
   return (
@@ -29,7 +40,7 @@ function App() {
             { username.length > 0 ? 
             <>
                 <Link className="nav-link middle text-light" to="/profile">Profile</Link>
-                <Link className="nav-link middle text-light" to="/" onClick={() => setUsername('')}>Logout</Link>
+                <Link className="nav-link middle text-light" to="/" onClick={setDefaults}>Logout</Link>
             </> :
               <Link className="nav-link middle text-light" to="/">Login</Link>
              }
@@ -39,11 +50,11 @@ function App() {
       </Navbar>
       <Switch>
         <Route exact path="/">
-          <LandingJumbotron username={username}/>
+          <LandingJumbotron username={username} firstname={firstname} />
           <Landing logInUser={logInUser} />
         </Route>
         <Route path="/profile">
-          <ProfilePage username={username}/>
+          <ProfilePage username={username}  logout={logout}/>
         </Route>
         <Route path="/about">
           <h1>This is the about page</h1>

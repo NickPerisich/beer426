@@ -18,6 +18,11 @@ router.post('/updatelikes', function(req, res, next) {
   db.update({username: req.body.username}, { '$set': {"likedBeers" : req.body.likedBeers}})
 });
 
+router.post('/deleteuser', function(req, res, next) {
+  const db = req.db.get('users');
+  db.findOneAndDelete({username: req.body.username});
+});
+
 router.post('/login', function(req, res, next) {
   const db = req.db.get('users');
   db.findOne({username: req.body.username}).then(user => {

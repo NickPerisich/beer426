@@ -38,7 +38,7 @@ function Landing(props) {
       if (res === 'INCORRECT'){
         setLoginMessage("Incorrect username or password");
       } else {
-        props.logInUser(login.username);
+        props.logInUser(JSON.parse(res));
         history.push("/profile");
       }
     });
@@ -58,7 +58,7 @@ function Landing(props) {
         setRegisterMessage("Username is already taken");
       }
       else {
-        props.logInUser(register.username);
+        props.logInUser(register);
         history.push("/profile");
       }
     });

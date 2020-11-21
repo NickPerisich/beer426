@@ -8,7 +8,7 @@ function LandingJumbotron(props) {
   return (
     <Container fluid className="hero" bg="light">
       <div class="hero-content">
-          <h1 class="text-dark head">Welcome {props.username && 'back'} to BrewFinder</h1>
+          <h1 class="text-dark head">Welcome {props.username && 'back'} to BrewFinder {props.firstname}</h1>
           <p class="text-dark">The easy way to navigate the complicated world of craft beers.</p>
           {props.username && <button class="btn text-light search" onClick={() => history.push("/profile")}>Search for beers!</button>}
       </div>
