@@ -104,7 +104,7 @@ function ProfilePage(props) {
                   {selectedBeer.descript && <li>{"Description: " + selectedBeer.descript}</li>}
                 </ul>
               </Card.Text>
-              <Button variant="success" onClick={addToLikes} disabled={buttonDisabler()}><i class="material-icons">thumb_up</i></Button>
+              <Button variant="success" onClick={addToLikes} disabled={buttonDisabler()}>Like</Button>
             </Card.Body>
           </Card>}
           {likedBeers.map(beer => {
@@ -124,7 +124,7 @@ function ProfilePage(props) {
                       {beer.descript && <li>{"Description: " + beer.descript}</li>}
                     </ul>
                   </Card.Text>
-                  <Button variant="danger" value={beer.id} onClick={removeFromLikes}>Remove from likes</Button>
+                  <Button variant="danger" value={beer.id} onClick={removeFromLikes}>Unlike</Button>
                 </Card.Body>
               </Card>
             );
